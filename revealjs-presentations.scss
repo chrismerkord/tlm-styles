@@ -1,0 +1,50 @@
+// Reveal.js Presentations SCSS File
+
+// Override Styles for Presentations
+
+// Presentation Base
+.reveal {
+  @include text-style($font-body, 20px, $text-color, 1.5);
+  background-color: #00285f;
+  color: #ffffff;
+}
+
+// Slide Content
+.reveal .slides {
+  padding: 2em;
+}
+
+// Headings
+.reveal h1 {
+  @include heading-style(48px, $heading1-color);
+  color: #ffffff;
+}
+
+.reveal h2 {
+  @include heading-style(36px, $heading2-color);
+  color: #ffffff;
+}
+
+.reveal h3 {
+  @include heading-style(28px, $heading3-color);
+  color: #ffffff;
+}
+
+// Links
+.reveal a {
+  color: $accent-color;
+  text-decoration: none;
+}
+
+.reveal a:hover {
+  text-decoration: underline;
+}
+
+// Footer
+.reveal footer {
+  @include text-style($font-body, 14px, $header-footer-color);
+  text-align: center;
+  margin-top: 2em;
+}
+
+// Additional Presentation-specific styles can be added as needed.

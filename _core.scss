@@ -1,0 +1,51 @@
+// SCSS Core Styles File
+
+// Base Styles
+@import 'variables';
+@import 'mixins';
+
+body {
+  @include text-style($font-body, 10pt, $text-color, $line-height);
+  margin: $base-margin;
+}
+
+// Title Style
+.title {
+  @include text-style($font-title, 24pt, $title-color);
+}
+
+// Headings
+h1 {
+  @include heading-style(18pt, $heading1-color, 1pt solid $heading1-color);
+}
+
+h2 {
+  @include heading-style(14pt, $heading2-color);
+}
+
+h3 {
+  @include heading-style(12pt, $heading3-color);
+}
+
+// Keywords
+.keyword {
+  font-style: italic;
+  color: $accent-color;
+}
+
+// Figure Captions
+.fig-caption {
+  @include text-style($font-body, 9pt, $text-color);
+  font-style: italic;
+}
+
+// Header/Footer
+header {
+  @include text-style($font-heading, 8pt, $header-footer-color);
+  text-align: left;
+}
+
+footer {
+  @include text-style($font-body, 8pt, $header-footer-color);
+  text-align: right;
+}

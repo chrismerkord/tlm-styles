@@ -1,67 +1,90 @@
-# Teaching and Learning Materials SCSS Repository
+# TLM Styles (SCSS)
 
-This repository contains SCSS styles for creating consistent designs across teaching and learning materials (TLMs), including:
+Shared SCSS for consistent styling across Teaching & Learning Materials:
 
--   **Word Documents**
--   **Reveal.js Presentations**
--   **Websites**
+-   Websites (Quarto HTML)
+-   Reveal.js presentations
+-   HTML handouts
 
-## **Repository Structure**
+## Repository Layout
 
-``` plaintext
-/scss
-  |_ _variables.scss           # Global variables like colors, fonts, and spacing
-  |_ _mixins.scss              # Reusable SCSS mixins for styles
-  |_ _core.scss                # Core styles shared across all document types
-  |_ word-documents.scss       # Styles specific to Word documents
-  |_ websites.scss             # Styles specific to websites
-  |_ revealjs-presentations.scss # Styles specific to presentations
-  |_ styles.scss               # Main file importing all SCSS files
-  |_ README.md                 # Repository documentation
-  |_ LICENSE                  # MIT License for the repository
+```         
+_core.scss                 # base elements, utilities
+_mixins.scss               # reusable mixins
+_variables.scss            # colors, typography, spacing tokens
+revealjs-presentations.scss
+websites.scss
+handouts.scss
+styles.scss                # single entrypoint that uses/forwards the above
+LICENSE
+README.md
 ```
 
-## **How to Use This Repository with Git Submodules**
+## Adding the submodule (first time only)
 
-To use these styles across different repositories, follow these steps:
+-   Do this once in each course repository where you want to use the shared styles. Open the **course repo** in RStudio, then in the **Terminal** tab run:
 
-### **1. Add the Repository as a Submodule**
+    ```         
+    git submodule add https://github.com/chrismerkord/tlm-styles.git tlm-styles
+    ```
 
-``` bash
-git submodule add https://github.com/chrismerkord/tlm-styles.git
-```
+-   Then stage and commit the changes to `.gitmodules` and the submodule pointer using the **Git** tab.
 
-### **2. Clone the Repository with Submodules**
+## Initializing after cloning a repo with submodules
 
-When cloning a repository that includes this one as a submodule, run:
+-   When you (or anyone else) clone a course repo that already contains the `tlm-styles` submodule, run this once in the **Terminal** tab before using the repo:
 
-``` bash
-git clone --recurse-submodules https://github.com/your-username/your-repository.git
-```
+    ```         
+    git submodule update --init --recursive
+    ```
 
-### **3. Update the Submodule**
+-   This pulls down the actual submodule contents into the `tlm-styles` folder. Without this step, the folder will exist but be empty.
 
-When changes are made to this repository, update the submodule using:
+## Updating the submodule to the latest styles
 
-``` bash
-cd your-repository
-git submodule update --remote --merge
-```
+-   Whenever you want to bring in new commits from `tlm-styles` (for example, after you update the style repo itself), run:
 
-### **4. Reference SCSS Files in Your Project**
+    ```         
+    git submodule update --remote --merge tlm-styles
+    ```
 
-Use the `styles.scss` file in your build process or as part of your Quarto, Reveal.js, or static site generator configuration.
+-   Then stage and commit the updated submodule pointer with the **Git** tab.
 
-Example `quarto.yml` configuration:
+## Quarto Integration
 
-``` yaml
-format:
-  html:
-    css: tlm-styles/scss/styles.scss
-```
+-   **Website** (`_quarto.yml`):
 
-------------------------------------------------------------------------
+    ``` yaml
+    format:
+      html:
+        css: tlm-styles/styles.scss
+    ```
 
-This repository is licensed under the MIT License. See the `LICENSE` file for details.
+-   **Reveal.js** (`.qmd`):
 
-Let me know if you need additional configuration examples or more detailed setup instructions!
+    ``` yaml
+    format:
+      revealjs:
+        css: tlm-styles/styles.scss
+        pdf: true
+    ```
+
+-   **HTML Docs** (`.qmd`):
+
+    ``` yaml
+    format:
+      html:
+        css: tlm-styles/styles.scss
+    ```
+
+> Note: SCSS affects HTML outputs only. For DOCX, use a `reference-docx`. For LaTeX-PDF, use a LaTeX template or export the styled HTML to PDF via the browser.
+
+## Conventions
+
+-   Import order: `variables` → `mixins` → `core` → target files.
+-   Only reference tokens from `_variables.scss` inside targets.
+-   Do not commit licensed font files. Use system fonts or licensed hosting.
+
+## License
+
+MIT. See `LICENSE`.

@@ -55,6 +55,65 @@ README.md
 
 -   Then stage and commit the updated submodule pointer with the **Git** tab.
 
+## SCSS Usage Guide
+
+This repo follows a modular SCSS structure. Each file has a specific purpose:
+
+-   **`_variables.scss`**\
+    Define design tokens only:
+
+    -   Colors (`--brand-blue`, `--accent-green`)
+    -   Font stacks (`$body-font`, `$heading-font`)
+    -   Spacing scale (`$space-sm`, `$space-lg`)
+    -   Breakpoints, z-index layers, etc.
+
+    No selectors or styles here—just reusable values.
+
+-   **`_mixins.scss`**\
+    Define reusable patterns:
+
+    -   Media query helpers
+    -   Functions for color manipulation
+    -   Utility mixins (clearfix, text truncation, etc.)
+
+    Keep logic here, not raw styles.
+
+-   **`_core.scss`**\
+    Base element resets and defaults:
+
+    -   Normalize for `html`, `body`, `p`, `h1–h6`, `a`, `ul/ol`, `table`
+    -   Global rules (font-size, line-height, default link color)
+    -   Utility classes that apply site-wide (`.hidden`, `.no-print`, etc.)
+
+-   **Main document type files** (`websites.scss`, `handouts.scss`, `revealjs-presentations.scss`)\
+    Build on top of core, variables, and mixins:
+
+    -   Layout rules (max widths, margins)
+    -   Component styling (callouts, navbars, figures)
+    -   Context-specific overrides (print rules in handouts, slide scaling in presentations)
+
+    These files should always start with:
+
+    ``` scss
+    @use "./variables" as *;
+    @use "./mixins" as *;
+    @use "./core";
+    ```
+
+-   **`styles.scss`**
+
+    -   The single entrypoint. This pulls together variables, mixins, core, and each main document type. Quarto points to this file.
+
+-   **Rule of thumb:**
+
+    -    *Tokens* go in `_variables.scss`
+
+    -   *Logic* goes in `_mixins.scss`
+
+    -   *Defaults* go in `_core.scss`
+
+    -   *Actual design decisions per output type* go in the main files (`websites.scss`, `handouts.scss`, `revealjs-presentations.scss`)
+
 ## Quarto Integration
 
 -   **Website** (`_quarto.yml`):

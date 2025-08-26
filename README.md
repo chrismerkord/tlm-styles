@@ -15,6 +15,7 @@ _variables.scss            # colors, typography, spacing tokens
 revealjs-presentations.scss
 websites.scss
 handouts.scss
+_print.scss                # print rules for HTML→PDF
 styles.scss                # single entrypoint that uses/forwards the above
 LICENSE
 README.md
@@ -77,12 +78,22 @@ README.md
         css: tlm-styles/styles.scss
     ```
 
-> Note: SCSS affects HTML outputs only. For DOCX, use a `reference-docx`. For LaTeX-PDF, use a LaTeX template or export the styled HTML to PDF via the browser.
+Export to PDF via the browser with **Background graphics** enabled. The shared `_print.scss` controls pagination and print layout.
+
+> Note: SCSS affects HTML-based outputs. For native DOCX or LaTeX-PDF, use `reference.docx` and LaTeX templates respectively.
+
+## HTML → PDF Guidance
+
+-   Pagination and margins come from `_print.scss` (`@page` and `@media print`).
+-   Use utility classes in your QMD body:
+    -   `<div class="page-break"></div>` to force a new page.
+    -   Add `class: handout` to the top-level document container if you want the handout width rules.
+-   In Chrome/Edge Print dialog: enable **Background graphics**, set **Scale 100%**, choose **Margins: Default** (or Custom if `_print.scss` margins differ).
 
 ## Conventions
 
--   Import order: `variables` → `mixins` → `core` → target files.
--   Only reference tokens from `_variables.scss` inside targets.
+-   Import order: `variables` → `mixins` → `core` → targets → `_print.scss`.
+-   Only reference tokens defined in `_variables.scss` inside targets.
 -   Do not commit licensed font files. Use system fonts or licensed hosting.
 
 ## License

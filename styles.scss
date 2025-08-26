@@ -1,13 +1,14 @@
-// Main SCSS File - styles.scss
+// styles.scss — single entrypoint for all SCSS bundles
+@use "./variables" as *;
+@use "./mixins" as *;
 
-// Import Core Styles
-@import 'variables';
-@import 'mixins';
-@import 'core';
+// Base tokens and element defaults
+@forward "./core";
 
-// Document-Specific Overrides
-@import 'word-documents';
-@import 'revealjs-presentations';
-@import 'websites';
+// Targets
+@use "./websites";
+@use "./revealjs-presentations";
+@use "./handouts";
 
-// Add additional project-specific styles below if needed.
+// Shared print rules loaded last so they win in cascade
+@use "./print";

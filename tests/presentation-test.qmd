@@ -1,0 +1,23 @@
+---
+title: "Presentation Style Test"
+format:
+  revealjs:
+    css: ../styles.scss
+    pdf: true
+    slide-number: true
+---
+# Title Slide
+
+---
+
+## Content Slide
+Bullet 1  
+Bullet 2
+
+---
+
+## Layout Checks
+- Code
+```r
+summary(cars)
+```

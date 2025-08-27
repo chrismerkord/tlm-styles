@@ -11,3 +11,5 @@
 /tests/*.html
 /tests/*.pdf
 /tests/*_files/
+/.quarto/
+/_site/

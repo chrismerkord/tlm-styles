@@ -106,7 +106,7 @@ This repo follows a modular SCSS structure. Each file has a specific purpose:
 
 -   **Rule of thumb:**
 
-    -    *Tokens* go in `_variables.scss`
+    -   *Tokens* go in `_variables.scss`
 
     -   *Logic* goes in `_mixins.scss`
 
@@ -116,17 +116,17 @@ This repo follows a modular SCSS structure. Each file has a specific purpose:
 
 ## Brand Integration
 
-Quarto supports a `_brand.yml` file placed in the root of each course repository. This file declares high-level design tokens such as font families and color palette. It is the correct place to define which Adobe Fonts to use (e.g., Source Serif 4 for body, Source Sans 3 for headings, Source Code Pro for code) and base colors (text, background, accents). 
+Quarto supports a `_brand.yml` file placed in the root of each course repository. This file declares high-level design tokens such as font families and color palette. It is the correct place to define which Adobe Fonts to use (e.g., Source Serif 4 for body, Source Sans 3 for headings, Source Code Pro for code) and base colors (text, background, accents).
 
 The `tlm-styles` SCSS repo does not hard-code fonts or brand colors. Instead, it provides the layout, spacing, and component styling that apply consistently across all outputs. When Quarto renders, values from `_brand.yml` flow into the SCSS tokens (`$body-font`, `$heading-font`, `$code-font`, `$brand-*` colors) so each course can customize its branding while still benefiting from the shared styling system.
 
 In practice:
-- Add `_brand.yml` to each course repo alongside `_quarto.yml`.
-- Configure fonts and colors in `_brand.yml`.
-- Keep structure, spacing, and component rules in `tlm-styles`.
+
+-   Add `_brand.yml` to each course repo alongside `_quarto.yml`.
+-   Configure fonts and colors in `_brand.yml`.
+-   Keep structure, spacing, and component rules in `tlm-styles`.
 
 This separation ensures that shared SCSS logic is reusable across courses, while branding can be customized per course.
-
 
 ## Quarto Integration
 

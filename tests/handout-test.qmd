@@ -1,0 +1,19 @@
+---
+title: "Handout Style Test"
+format:
+  html:
+    css: ../styles.scss
+    toc: true
+---
+<div class="handout">
+# Handout Title
+Metadata block
+
+## Section
+Text, list, table, figure.
+
+<div class="page-break"></div>
+
+## Next Page
+More text.
+</div>

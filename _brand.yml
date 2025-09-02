@@ -1,0 +1,44 @@
+# _brand.yml — Teaching & Learning Materials (TLM)
+# Use Adobe Fonts by adding a <link> in Quarto's include-in-header (set below).
+# Do NOT put Adobe URLs inside `typography.fonts`; Quarto's brand spec doesn't support that field.
+
+meta:
+  name:
+    short: TLM
+    full: Teaching & Learning Materials
+
+logo:
+  images:
+    header:
+      path: logos/tlm-header-dark.svg
+      alt: TLM header logo (light glyph)
+    header-light:
+      path: logos/tlm-header-light.svg
+      alt: TLM header logo (dark glyph)
+    full:
+      path: logos/tlm-full.svg
+      alt: Full TLM logomark
+  small: header-light
+  medium:
+    light: header-light
+    dark: header
+  large: full
+
+color:
+  palette:
+    blue-600: "#1F4E79"
+    primary: blue-600        # brand primary used everywhere
+    foreground: "#141414"
+    background: "#FFFFFF"
+
+typography:
+  fonts:
+    - family: Source Sans 3
+    - family: Source Serif 4
+    - family: Source Code Pro
+  base:
+    family: Source Sans 3
+  headings:
+    family: Source Serif 4
+    weight: 600
+    color: primary         # <- overrides Cosmo/Darkly heading color

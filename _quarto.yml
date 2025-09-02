@@ -1,0 +1,24 @@
+project:
+  type: website
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: styles.scss
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
+
+  revealjs:
+    # Dark when presenting
+    theme: night
+    css:
+      - tlm-styles/styles.scss         # your shared styles
+      - presentations-print-light.scss # forces light when printing
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
+    slide-number: true
+    code-copy: true

@@ -1,41 +1,44 @@
-// Word Documents SCSS File
+/* Handouts: printable HTML documents (student or instructor) */
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./core";
 
-// Override Styles for Word Documents
-
-// Page Setup
-.word-document {
-  @include text-style($font-body, 10pt, $text-color, $line-height);
-  margin: $base-margin;
+/* Layout width and rhythm suitable for print and on-screen reading */
+.handout,
+main.content {
+  max-width: 7in;
+  margin: 0 auto;
+  line-height: 1.5;
 }
 
-// Headings
-.word-document h1 {
-  @include heading-style(18pt, $heading1-color, 1pt solid $heading1-color);
+/* Title block */
+.handout-title, header h1.title {
+  font-weight: 700;
+  margin-top: 0.2in;
+  margin-bottom: 0.15in;
 }
 
-.word-document h2 {
-  @include heading-style(14pt, $heading2-color);
+/* Metadata block */
+.handout-meta {
+  font-size: 0.95em;
+  opacity: 0.9;
+  margin-bottom: 0.2in;
 }
 
-.word-document h3 {
-  @include heading-style(12pt, $heading3-color);
+/* Figures and captions */
+.figure, figure { margin: 0.15in 0; }
+figcaption { font-size: 0.9em; opacity: 0.85; }
+
+/* Checklist or rubric tables */
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid rgba(0,0,0,0.15); padding: 0.12in; }
+th { text-align: left; }
+
+/* Callouts map to printable borders */
+.callout {
+  border: 1px solid rgba(0,0,0,0.2);
+  border-left: 0.12in solid var(--accent, #0a62c1);
+  padding: 0.12in 0.14in;
+  margin: 0.14in 0;
 }
 
-// Headers and Footers
-.word-document header {
-  @include text-style($font-heading, 8pt, $header-footer-color);
-  text-align: left;
-}
-
-.word-document footer {
-  @include text-style($font-body, 8pt, $header-footer-color);
-  text-align: right;
-}
-
-// Figure Captions
-.word-document .fig-caption {
-  @include text-style($font-body, 9pt, $text-color);
-  font-style: italic;
-}
-
-// Additional Word Document-specific styles can be added as needed.

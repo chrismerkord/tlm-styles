@@ -4,32 +4,85 @@
 
 meta:
   name:
-    short: TLM
     full: Teaching & Learning Materials
+    short: TLM
 
 logo:
   images:
-    header:
-      path: logos/tlm-header-dark.svg
-      alt: TLM header logo (light glyph)
-    header-light:
-      path: logos/tlm-header-light.svg
-      alt: TLM header logo (dark glyph)
-    full:
-      path: logos/tlm-full.svg
-      alt: Full TLM logomark
-  small: header-light
+    m-symbol-black:
+      path: logos/m-symbol-black.png
+      alt: Black M Symbol
+    m-symbol-red:
+      path: logos/m-symbol-red.png
+      alt: Red M Symbol
+    m-symbol-white:
+      path: logos/m-symbol-white.png
+      alt: White M Symbol
+    msm-horizontal-black-logo:
+      path: logos/msm-horizontal-black-logo.png
+      alt: Black Horizontal MSM Logo
+    msm-horizontal-red-logo:
+      path: logos/msm-horizontal-red-logo.png
+      alt: Red Horizontal MSM Logo
+    msm-horizontal-white-logo:
+      path: logos/msm-horizontal-white-logo.png
+      alt: White Horizontal MSM Logo
+    msm-vertical-black-logo:
+      path: logos/msm-vertical-black-logo.png
+      alt: Black Vertical MSM Logo
+    msm-vertical-red-logo:
+      path: logos/msm-vertical-red-logo.png
+      alt: Red Vertical MSM Logo
+    msm-vertical-white-logo:
+      path: logos/msm-vertical-white-logo.png
+      alt: White Vertical MSM Logo
+  small: 
+    light: m-symbol-red
+    dark: m-symbol-white
   medium:
-    light: header-light
-    dark: header
-  large: full
+    light: msm-vertical-red-logo
+    dark: msm-vertical-white-logo
+  large:
+    light: msm-horizontal-red-logo
+    dark: msm-horizontal-white-logo
 
 color:
   palette:
-    blue-600: "#1F4E79"
-    primary: blue-600        # brand primary used everywhere
-    foreground: "#141414"
-    background: "#FFFFFF"
+    msm-white: "#ffffff"
+    msm-red: "#c8102e"
+    msm-gray: "#544f47"
+    msm-black: "#000000"
+    msm-dark-gray: "#383737"
+    msm-medium-gray: "#4f4e4f"
+    msm-silver: "#a6a7aa"
+    msm-light-gray: "#dbdcdd"
+    white: msm-white
+    foreground: "#212529"
+    primary: bla
+    secondary: "#800000"
+    success: "#2e7d32"
+    info: "#1976d2"
+    warning: "#ffb300"
+    danger: "#c62828"
+    muted: "#6c757d"
+    border: "#dee2e6"
+    link: "#1976d2"
+    link-hover: "#0d47a1"
+    code-fg: "#2d2d2d"
+    code-bg: "#f8f9fa"
+    teal: "#00796b"
+
+  foreground: "#212529"
+  background: "#ffffff"
+  primary: "#003366"
+  secondary: "#800000"
+  tertiary: "#00796b"
+  success: "#2e7d32"
+  info: "#1976d2"
+  warning: "#ffb300"
+  danger: "#c62828"
+
+  vocab: "#00796b"
 
 typography:
   fonts:

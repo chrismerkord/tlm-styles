@@ -1,5 +1,9 @@
 // Reveal.js Presentations SCSS File
 
+@use "./variables" as *;
+@use "./mixins" as *;
+@use "./core";
+
 // Override Styles for Presentations
 
 // Presentation Base

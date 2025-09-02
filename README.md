@@ -12,7 +12,7 @@ Shared SCSS for consistent styling across Teaching & Learning Materials:
 _core.scss                 # base elements, utilities
 _mixins.scss               # reusable mixins
 _variables.scss            # colors, typography, spacing tokens
-revealjs-presentations.scss
+presentations.scss
 websites.scss
 handouts.scss
 styles.scss                # single entrypoint that uses/forwards the above

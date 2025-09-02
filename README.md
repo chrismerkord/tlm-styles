@@ -13,16 +13,22 @@ _core.scss                 # base elements, utilities
 _mixins.scss               # reusable mixins
 _print.scss                # print rules for HTML→PDF
 _variables.scss            # colors, typography, spacing tokens
-handouts.scss
-presentations.scss
-websites.scss
+handouts.scss              # overrides for handout outputs
+presentations.scss         # overrides for presentation outputs
+presentations-print-light.scss # alt print rules for slides
+websites.scss              # overrides for website outputs
 styles.scss                # single entrypoint that uses/forwards the above
+_brand.yml                 # Quarto brand tokens (fonts, colors)
+_quarto.yml                # Quarto project defaults (for testing)
+assets/
+  img/                     # logos and other images
 tests/                     # minimal .qmd files for verifying styles
   handout-test.qmd
   presentations-test.qmd
   website-test.qmd
 LICENSE
 README.md
+.gitignore
 ```
 
 ## Adding the submodule (first time only)

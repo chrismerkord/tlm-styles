@@ -1,6 +1,4 @@
-# _brand.yml — Teaching & Learning Materials (TLM)
-# Use Adobe Fonts by adding a <link> in Quarto's include-in-header (set below).
-# Do NOT put Adobe URLs inside `typography.fonts`; Quarto's brand spec doesn't support that field.
+# _brand.yml
 
 meta:
   name:
@@ -56,33 +54,24 @@ color:
     msm-medium-gray: "#4f4e4f"
     msm-silver: "#a6a7aa"
     msm-light-gray: "#dbdcdd"
-    white: msm-white
-    foreground: "#212529"
-    primary: bla
-    secondary: "#800000"
-    success: "#2e7d32"
-    info: "#1976d2"
-    warning: "#ffb300"
-    danger: "#c62828"
-    muted: "#6c757d"
-    border: "#dee2e6"
-    link: "#1976d2"
-    link-hover: "#0d47a1"
-    code-fg: "#2d2d2d"
-    code-bg: "#f8f9fa"
-    teal: "#00796b"
-
-  foreground: "#212529"
-  background: "#ffffff"
-  primary: "#003366"
-  secondary: "#800000"
-  tertiary: "#00796b"
-  success: "#2e7d32"
-  info: "#1976d2"
-  warning: "#ffb300"
-  danger: "#c62828"
-
-  vocab: "#00796b"
+    tlm-white: "#ffffff"
+    tlm-blue-gray: "#212529"
+    tlm-dark-red: "#800000"
+    tlm-dark-blue: "#003366"
+    tlm-green: "#2e7d32" 
+    tlm-teal: "#00796b"
+    tlm-blue: "#1976d2"
+    tlm-amber: "#ffb300"
+    tlm-red: "#c62828" 
+  foreground: tlm-blue-gray
+  background: tlm-white
+  primary: tlm-dark-blue
+  secondary: tlm-dark-red
+  tertiary: tlm-teal
+  success: tlm-green
+  info: tlm-blue
+  warning: tlm-amber
+  danger: tlm-red
 
 typography:
   fonts:
@@ -92,6 +81,6 @@ typography:
   base:
     family: Source Sans 3
   headings:
-    family: Source Serif 4
-    weight: 600
-    color: primary         # <- overrides Cosmo/Darkly heading color
+    family: Source Sans 3
+    weight: 600  # semibold
+    color: primary

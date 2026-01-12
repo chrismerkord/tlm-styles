@@ -1,0 +1,154 @@
+/* tlm-theme.scss
+   Quarto theme SCSS (brand + rules) designed to work in Quarto's theme pipeline.
+
+   IMPORTANT
+   - Do not use @use / @import in this file. Quarto may concatenate theme layers,
+     and Sass requires @use to appear before any rules.
+   - Use Quarto's SCSS regions so Quarto can safely merge layers.
+
+   Intended use (in course repo _quarto.yml):
+     brand: tlm-styles/_brand.yml
+     format:
+       html:
+         theme: [cosmo, brand, tlm-styles/tlm-theme.scss]
+       revealjs:
+         theme: [cosmo, brand, tlm-styles/tlm-theme.scss]
+*/
+
+/*-- scss:defaults --*/
+// Colors
+$title-color: #00285f !default;           // Dark Blue
+$heading1-color: #00285f !default;        // Dark Blue
+$heading2-color: #000000 !default;        // Black
+$heading3-color: #5F3700 !default;        // Dark Earth Brown
+$text-color: #000000 !default;            // Black
+$accent-color: #003366 !default;          // Dark Blue
+$header-footer-color: #AAAAAA !default;   // Light Gray
+
+// Fonts (Adobe Fonts should provide these families by name)
+$font-body: 'Source Sans Pro', sans-serif !default;
+$font-heading: 'Acumin Pro Condensed', sans-serif !default;
+$font-title: 'Acumin Pro SemiCondensed Bold', sans-serif !default;
+
+// Spacing / type
+$base-margin: 1in !default;
+$line-height: 1.5 !default;
+
+/*-- scss:mixins --*/
+// Reusable Mixin for Text Styling
+@mixin text-style($font-family, $font-size, $color, $lh: normal) {
+  font-family: $font-family;
+  font-size: $font-size;
+  color: $color;
+  line-height: $lh;
+}
+
+// Reusable Mixin for Headings
+@mixin heading-style($font-size, $color, $border-top: none) {
+  font-family: $font-heading;
+  font-size: $font-size;
+  color: $color;
+  border-top: $border-top;
+  margin-top: 20px;
+}
+
+// Reusable Mixin for Borders
+@mixin bordered($thickness, $color) {
+  border: $thickness solid $color;
+}
+
+/*-- scss:rules --*/
+/* Global body text (website + docs) */
+html, body {
+  @include text-style($font-body, 1rem, $text-color, $line-height);
+}
+
+/* Quarto site content tends to live under these containers */
+.quarto-title-block,
+.quarto-content,
+.content,
+main {
+  font-family: $font-body;
+}
+
+/* Title utility */
+.title {
+  @include text-style($font-title, 24pt, $title-color);
+}
+
+/* Headings (website + docs) */
+h1 {
+  @include heading-style(18pt, $heading1-color, 1pt solid $heading1-color);
+}
+h2 { @include heading-style(14pt, $heading2-color); }
+h3 { @include heading-style(12pt, $heading3-color); }
+
+/* Links */
+a {
+  color: $accent-color;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+/* Figure captions */
+.fig-caption,
+.figure-caption,
+figcaption {
+  @include text-style($font-body, 0.9rem, $text-color);
+  font-style: italic;
+}
+
+/* Quarto navbar + footer (website) */
+.navbar,
+.navbar-dark,
+.navbar-light {
+  background-color: $heading1-color;
+}
+
+.navbar a,
+.navbar a.nav-link,
+.navbar .navbar-brand {
+  color: #ffffff;
+}
+
+.navbar a:hover,
+.navbar a.nav-link:hover,
+.navbar .navbar-brand:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer,
+.page-footer,
+.quarto-footer {
+  @include text-style($font-body, 0.85rem, $header-footer-color);
+  text-align: center;
+}
+
+/* Explicit Reveal.js typography (Reveal does not reliably inherit from body) */
+.reveal {
+  font-family: $font-body;
+  color: $text-color;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-family: $font-heading;
+  color: $title-color;
+}
+
+/* Base slide typography adjustments */
+.reveal .slides {
+  font-size: var(--slide-font-size, 28px);
+  line-height: 1.3;
+}
+
+/* Print (PDF export) tweaks for Reveal.js */
+@media print {
+  @page { size: Letter landscape; margin: 0; }
+  .reveal .slides { box-shadow: none; }
+}

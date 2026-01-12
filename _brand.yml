@@ -35,13 +35,13 @@ logo:
       path: logos/msm-vertical-white-logo.png
       alt: White Vertical MSM Logo
   small: 
-    light: m-symbol-red
+    light: m-symbol-black
     dark: m-symbol-white
   medium:
-    light: msm-vertical-red-logo
+    light: msm-vertical-black-logo
     dark: msm-vertical-white-logo
   large:
-    light: msm-horizontal-red-logo
+    light: msm-horizontal-black-logo
     dark: msm-horizontal-white-logo
 
 color:

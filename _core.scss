@@ -1,8 +1,8 @@
-// SCSS Core Styles File
+// _core.scss — base element defaults
+// IMPORTANT: @use must appear before any other rules in this file.
 
-// Base Styles
-@import 'variables';
-@import 'mixins';
+@use "./variables" as *;
+@use "./mixins" as *;
 
 body {
   @include text-style($font-body, 10pt, $text-color, $line-height);

@@ -1,5 +1,7 @@
 // SCSS Mixins File
 
+@use "./variables" as *;
+
 // Reusable Mixin for Text Styling
 @mixin text-style($font-family, $font-size, $color, $line-height: normal) {
   font-family: $font-family;

@@ -1,6 +1,6 @@
 // SCSS Mixins File
 
-@use "./variables" as *;
+@use "./variables" as v;
 
 // Reusable Mixin for Text Styling
 @mixin text-style($font-family, $font-size, $color, $line-height: normal) {
@@ -12,7 +12,7 @@
 
 // Reusable Mixin for Headings
 @mixin heading-style($font-size, $color, $border-top: none) {
-  font-family: $font-heading;
+  font-family: v.$font-heading;
   font-size: $font-size;
   color: $color;
   border-top: $border-top;

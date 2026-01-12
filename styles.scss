@@ -1,14 +1,27 @@
-// styles.scss — single entrypoint for all SCSS bundles
+/*-- scss:uses --*/
+/*
+  tlm-styles/styles.scss
+  SCSS entrypoint for TLM styling.
+
+  Quarto requires at least one SCSS “layer boundary” comment when an .scss file is
+  used as a theme layer (e.g., under format.html.theme or format.revealjs.theme).
+
+  This file is safe to include either as:
+    - format: html: css: [tlm-styles/styles.scss]
+    - format: revealjs: theme: [ ..., tlm-styles/styles.scss, ... ]
+*/
+
 @use "./variables" as *;
 @use "./mixins" as *;
 
-// Base tokens and element defaults
+/* Base tokens and element defaults */
 @forward "./core";
 
-// Targets
+/*-- scss:rules --*/
+/* Targets */
 @use "./websites";
 @use "./presentations";
 @use "./handouts";
 
-// Shared print rules loaded last so they win in cascade
+/* Shared print rules loaded last so they win in cascade */
 @use "./print";

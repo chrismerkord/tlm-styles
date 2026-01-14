@@ -61,6 +61,23 @@ README.md
 
 -   Then stage and commit the updated submodule pointer with the **Git** tab.
 
+## Undoing Accidental Edits in a Submodule (Course Repos)
+
+**When to do this**
+
+-   You accidentally edited files inside `tlm-styles/` while working in a course repository.
+-   You have not committed or pushed those changes.
+-   All edits to shared styles should be made in the `tlm-styles` repo itself, not in course repos.
+
+**How to undo the edits**
+
+From the **course repository** (e.g. `biol-275`) in RStudio, open the **Terminal** tab and run:
+
+``` bash
+git -C tlm-styles restore . 
+git -C tlm-styles clean -fd
+```
+
 ## SCSS Usage Guide
 
 This repo follows a modular SCSS structure. Each file has a specific purpose:

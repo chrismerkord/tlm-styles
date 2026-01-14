@@ -7,9 +7,7 @@
     brand: tlm-styles/_brand.yml
     format:
       html:
-        theme: [cosmo, brand, tlm-styles/tlm-theme.scss]
-      revealjs:
-        theme: [cosmo, brand, tlm-styles/tlm-theme.scss]
+        theme: [default, tlm-styles/tlm-theme.scss, styles.scss]
 
   Quarto/Sass constraints:
   - Do not use @use / @import in this file. Quarto concatenates theme layers,

@@ -1,41 +1,53 @@
-/* tlm-theme.scss
-   Quarto theme SCSS (brand + rules) designed to work in Quarto's theme pipeline.
+/*
+  tlm-theme.scss
+  -----------------------------------------------------------------------------
+  Shared Quarto theme SCSS for Teaching & Learning Materials (TLM).
 
-   IMPORTANT
-   - Do not use @use / @import in this file. Quarto may concatenate theme layers,
-     and Sass requires @use to appear before any rules.
-   - Use Quarto's SCSS regions so Quarto can safely merge layers.
+  How this file is used (course repo _quarto.yml):
+    brand: tlm-styles/_brand.yml
+    format:
+      html:
+        theme: [cosmo, brand, tlm-styles/tlm-theme.scss]
+      revealjs:
+        theme: [cosmo, brand, tlm-styles/tlm-theme.scss]
 
-   Intended use (in course repo _quarto.yml):
-     brand: tlm-styles/_brand.yml
-     format:
-       html:
-         theme: [cosmo, brand, tlm-styles/tlm-theme.scss]
-       revealjs:
-         theme: [cosmo, brand, tlm-styles/tlm-theme.scss]
+  Quarto/Sass constraints:
+  - Do not use @use / @import in this file. Quarto concatenates theme layers,
+    and Sass requires @use declarations to appear before any rules.
+  - Keep tokens, mixins, and rules separated using Quarto's SCSS regions so
+    theme layers merge safely across brand + course overrides.
 */
 
 /*-- scss:defaults --*/
+// -----------------------------------------------------------------------------
+// Design tokens used across website, handouts, and Reveal.js slides.
+// Keep these as shared defaults; course-specific overrides belong in the
+// course repo's styles.scss.
+// -----------------------------------------------------------------------------
 // Colors
-$title-color: #00285f !default;           // Dark Blue
-$heading1-color: #00285f !default;        // Dark Blue
-$heading2-color: #000000 !default;        // Black
-$heading3-color: #5F3700 !default;        // Dark Earth Brown
-$text-color: #000000 !default;            // Black
-$accent-color: #003366 !default;          // Dark Blue
-$header-footer-color: #AAAAAA !default;   // Light Gray
+$title-color: #00285f !default;           // Dark Blue (primary title color)
+$heading1-color: #00285f !default;        // Dark Blue (H1)
+$heading2-color: #000000 !default;        // Black (H2)
+$heading3-color: #5F3700 !default;        // Dark Earth Brown (H3)
+$text-color: #000000 !default;            // Black (body text)
+$accent-color: #003366 !default;          // Dark Blue (links)
+$header-footer-color: #AAAAAA !default;   // Light Gray (footer text)
 
 // Fonts (Adobe Fonts should provide these families by name)
 $font-body: 'Source Sans Pro', sans-serif !default;
 $font-heading: 'Acumin Pro Condensed', sans-serif !default;
 $font-title: 'Acumin Pro SemiCondensed Bold', sans-serif !default;
 
-// Spacing / type
+// Spacing / typography scale
 $base-margin: 1in !default;
 $line-height: 1.5 !default;
 
 /*-- scss:mixins --*/
-// Reusable Mixin for Text Styling
+// -----------------------------------------------------------------------------
+// Mixins centralize common typographic patterns. Use these in rules below to
+// keep styles consistent across outputs.
+// -----------------------------------------------------------------------------
+// Text styling helper (body, captions, etc.)
 @mixin text-style($font-family, $font-size, $color, $lh: normal) {
   font-family: $font-family;
   font-size: $font-size;
@@ -43,7 +55,7 @@ $line-height: 1.5 !default;
   line-height: $lh;
 }
 
-// Reusable Mixin for Headings
+// Heading styling helper (size, color, optional top border)
 @mixin heading-style($font-size, $color, $border-top: none) {
   font-family: $font-heading;
   font-size: $font-size;
@@ -52,12 +64,17 @@ $line-height: 1.5 !default;
   margin-top: 20px;
 }
 
-// Reusable Mixin for Borders
+// Border helper (used for utility rules if needed later)
 @mixin bordered($thickness, $color) {
   border: $thickness solid $color;
 }
 
 /*-- scss:rules --*/
+// -----------------------------------------------------------------------------
+// Global base rules for Quarto HTML outputs + Reveal.js.
+// Keep rules output-agnostic unless a format-specific override is required.
+// -----------------------------------------------------------------------------
+
 /* Global body text (website + docs) */
 html, body {
   @include text-style($font-body, 1rem, $text-color, $line-height);
@@ -80,7 +97,9 @@ main {
 h1 {
   @include heading-style(18pt, $heading1-color, 1pt solid $heading1-color);
 }
+
 h2 { @include heading-style(14pt, $heading2-color); }
+
 h3 { @include heading-style(12pt, $heading3-color); }
 
 /* Links */
@@ -88,6 +107,7 @@ a {
   color: $accent-color;
   text-decoration: none;
 }
+
 a:hover { text-decoration: underline; }
 
 /* Figure captions */

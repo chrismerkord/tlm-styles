@@ -22,50 +22,16 @@
 // Keep these as shared defaults; course-specific overrides belong in the
 // course repo's styles.scss.
 // -----------------------------------------------------------------------------
-// Colors
-$title-color: #00285f !default;           // Dark Blue (primary title color)
-$heading1-color: #00285f !default;        // Dark Blue (H1)
-$heading2-color: #000000 !default;        // Black (H2)
-$heading3-color: #5F3700 !default;        // Dark Earth Brown (H3)
-$text-color: #000000 !default;            // Black (body text)
-$accent-color: #003366 !default;          // Dark Blue (links)
-$header-footer-color: #AAAAAA !default;   // Light Gray (footer text)
 
-// Fonts (Adobe Fonts should provide these families by name)
-$font-body: 'Source Sans Pro', sans-serif !default;
-$font-heading: 'Acumin Pro Condensed', sans-serif !default;
-$font-title: 'Acumin Pro SemiCondensed Bold', sans-serif !default;
 
-// Spacing / typography scale
-$base-margin: 1in !default;
-$line-height: 1.5 !default;
 
 /*-- scss:mixins --*/
 // -----------------------------------------------------------------------------
 // Mixins centralize common typographic patterns. Use these in rules below to
 // keep styles consistent across outputs.
 // -----------------------------------------------------------------------------
-// Text styling helper (body, captions, etc.)
-@mixin text-style($font-family, $font-size, $color, $lh: normal) {
-  font-family: $font-family;
-  font-size: $font-size;
-  color: $color;
-  line-height: $lh;
-}
 
-// Heading styling helper (size, color, optional top border)
-@mixin heading-style($font-size, $color, $border-top: none) {
-  font-family: $font-heading;
-  font-size: $font-size;
-  color: $color;
-  border-top: $border-top;
-  margin-top: 20px;
-}
 
-// Border helper (used for utility rules if needed later)
-@mixin bordered($thickness, $color) {
-  border: $thickness solid $color;
-}
 
 /*-- scss:rules --*/
 // -----------------------------------------------------------------------------
@@ -73,100 +39,73 @@ $line-height: 1.5 !default;
 // Keep rules output-agnostic unless a format-specific override is required.
 // -----------------------------------------------------------------------------
 
-/* Global body text (website + docs) */
-html, body {
-  @include text-style($font-body, 1rem, $text-color, $line-height);
+/*-- scss:rules --*/
+
+/*-- improve the look of the cards --*/
+/*-- make them look more like the actual Bootstrap cards --*/
+
+
+.card-header > p,
+.card-title > p,
+.card-footer > p {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 
-/* Quarto site content tends to live under these containers */
-.quarto-title-block,
-.quarto-content,
-.content,
-main {
-  font-family: $font-body;
+.card-title > h5 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: black;
 }
 
-/* Title utility */
-.title {
-  @include text-style($font-title, 24pt, $title-color);
+.card-body > p {
+  margin-bottom: 1rem;
+}
+.card-body > p:last-child {
+  margin-bottom: 0;
 }
 
-/* Headings (website + docs) */
-h1 {
-  @include heading-style(18pt, $heading1-color, 1pt solid $heading1-color);
-}
-
-h2 { @include heading-style(14pt, $heading2-color); }
-
-h3 { @include heading-style(12pt, $heading3-color); }
-
-/* Links */
-a {
-  color: $accent-color;
-  text-decoration: none;
-}
-
-a:hover { text-decoration: underline; }
-
-/* Figure captions */
-.fig-caption,
-.figure-caption,
-figcaption {
-  @include text-style($font-body, 0.9rem, $text-color);
-  font-style: italic;
-}
-
-/* Quarto navbar + footer (website) */
-.navbar,
-.navbar-dark,
-.navbar-light {
-  background-color: $heading1-color;
-}
-
-.navbar a,
-.navbar a.nav-link,
-.navbar .navbar-brand {
-  color: #ffffff;
-}
-
-.navbar a:hover,
-.navbar a.nav-link:hover,
-.navbar .navbar-brand:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-.footer,
-.page-footer,
-.quarto-footer {
-  @include text-style($font-body, 0.85rem, $header-footer-color);
+/* Big statement slide */
+.reveal .statement-slide {
+  display: flex;
+  align-items: center;     /* vertical centering */
+  justify-content: center; /* horizontal centering */
+  height: 100%;
   text-align: center;
 }
 
-/* Explicit Reveal.js typography (Reveal does not reliably inherit from body) */
-.reveal {
-  font-family: $font-body;
-  color: $text-color;
+.reveal .statement-slide p {
+  font-size: 2.6em;        /* adjust as needed */
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--accent, #2b6cb0); /* fallback if no brand token */
+  margin: 0;
 }
 
-.reveal h1,
-.reveal h2,
-.reveal h3,
-.reveal h4,
-.reveal h5,
-.reveal h6 {
-  font-family: $font-heading;
-  color: $title-color;
+.reveal .keyword {
+  font-family: "Acumin Pro SemiCondensed", "Acumin Pro", sans-serif;
+  font-weight: 700;
+  background-color: color-mix(
+    in srgb,
+    #2e7d32 18%,
+    transparent
+  );
+  padding: 0.08em 0.35em;
+  border-radius: 0.3em;
+  color: #2e7d32;
 }
 
-/* Base slide typography adjustments */
-.reveal .slides {
-  font-size: var(--slide-font-size, 28px);
-  line-height: 1.3;
+.reveal strong {
+  font-weight: 700;
+  color: #CC5500;
 }
 
-/* Print (PDF export) tweaks for Reveal.js */
-@media print {
-  @page { size: Letter landscape; margin: 0; }
-  .reveal .slides { box-shadow: none; }
+.reveal .slides img.fit-vertical {
+  max-width: 100%;
+  max-height: 70vh;
+  height: auto;
 }

@@ -15,7 +15,6 @@ _print.scss                # print rules for HTML→PDF
 _variables.scss            # colors, typography, spacing tokens
 handouts.scss              # overrides for handout outputs
 presentations.scss         # overrides for presentation outputs
-presentations-print-light.scss # alt print rules for slides
 websites.scss              # overrides for website outputs
 styles.scss                # single entrypoint that uses/forwards the above
 _brand.yml                 # Quarto brand tokens (fonts, colors)

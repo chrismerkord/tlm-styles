@@ -157,7 +157,13 @@ This separation ensures that shared SCSS logic is reusable across courses, while
     ``` yaml
     format:
       html:
-        css: tlm-styles/styles.scss
+        theme: 
+          - default
+          - tlm-styles/tlm-theme.scss
+          - styles.scss
+        include-in-header:
+          - text: |
+              <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
     ```
 
 -   **Reveal.js** (`.qmd`):
@@ -165,16 +171,13 @@ This separation ensures that shared SCSS logic is reusable across courses, while
     ``` yaml
     format:
       revealjs:
-        css: tlm-styles/styles.scss
-        pdf: true
-    ```
-
--   **HTML Docs** (`.qmd`):
-
-    ``` yaml
-    format:
-      html:
-        css: tlm-styles/styles.scss
+        theme: 
+          - default
+          - tlm-styles/tlm-theme.scss
+          - styles.scss
+        include-in-header:
+          - text: |
+              <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
     ```
 
 Export to PDF via the browser with **Background graphics** enabled. The shared `_print.scss` controls pagination and print layout.

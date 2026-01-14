@@ -44,43 +44,43 @@ logo:
     light: msm-horizontal-black-logo
     dark: msm-horizontal-white-logo
 
-color:
-  palette:
-    msm-white: "#ffffff"
-    msm-red: "#c8102e"
-    msm-gray: "#544f47"
-    msm-black: "#000000"
-    msm-dark-gray: "#383737"
-    msm-medium-gray: "#4f4e4f"
-    msm-silver: "#a6a7aa"
-    msm-light-gray: "#dbdcdd"
-    tlm-white: "#ffffff"
-    tlm-blue-gray: "#212529"
-    tlm-dark-red: "#800000"
-    tlm-dark-blue: "#003366"
-    tlm-green: "#2e7d32" 
-    tlm-teal: "#00796b"
-    tlm-blue: "#1976d2"
-    tlm-amber: "#ffb300"
-    tlm-red: "#c62828" 
-  foreground: tlm-blue-gray
-  background: tlm-white
-  primary: tlm-dark-blue
-  secondary: tlm-dark-red
-  tertiary: tlm-teal
-  success: tlm-green
-  info: tlm-blue
-  warning: tlm-amber
-  danger: tlm-red
-
-typography:
-  fonts:
-    - family: Source Sans 3
-    - family: Source Serif 4
-    - family: Source Code Pro
-  base:
-    family: Source Sans 3
-  headings:
-    family: Source Sans 3
-    weight: 600  # semibold
-    color: primary
+# color:
+#   palette:
+#     msm-white: "#ffffff"
+#     msm-red: "#c8102e"
+#     msm-gray: "#544f47"
+#     msm-black: "#000000"
+#     msm-dark-gray: "#383737"
+#     msm-medium-gray: "#4f4e4f"
+#     msm-silver: "#a6a7aa"
+#     msm-light-gray: "#dbdcdd"
+#     tlm-white: "#ffffff"
+#     tlm-blue-gray: "#212529"
+#     tlm-dark-red: "#800000"
+#     tlm-dark-blue: "#003366"
+#     tlm-green: "#2e7d32" 
+#     tlm-teal: "#00796b"
+#     tlm-blue: "#1976d2"
+#     tlm-amber: "#ffb300"
+#     tlm-red: "#c62828" 
+#   foreground: tlm-blue-gray
+#   background: tlm-white
+#   primary: tlm-dark-blue
+#   secondary: tlm-dark-red
+#   tertiary: tlm-teal
+#   success: tlm-green
+#   info: tlm-blue
+#   warning: tlm-amber
+#   danger: tlm-red
+# 
+# typography:
+#   fonts:
+#     - family: Source Sans 3
+#     - family: Source Serif 4
+#     - family: Source Code Pro
+#   base:
+#     family: Source Sans 3
+#   headings:
+#     family: Source Sans 3
+#     weight: 600  # semibold
+#     color: primary

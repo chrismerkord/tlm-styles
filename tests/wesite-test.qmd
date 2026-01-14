@@ -1,16 +1,17 @@
 ---
 title: "Website Style Test"
-format:
-  html:
-    css: ../styles.scss
-    toc: true
 ---
+
 # H1
+
 ## H2
+
 Paragraph **bold** *italic*.  
+
 ::: callout
 Callout
 :::
+
 | A | B |
 |---|---|
 | 1 | 2 |

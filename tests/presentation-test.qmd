@@ -1,23 +1,33 @@
 ---
 title: "Presentation Style Test"
+brand: ../_brand.yml
 format:
   revealjs:
-    css: ../styles.scss
+    theme:
+      - default
+      - ../tlm-theme.scss
     pdf: true
     slide-number: true
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
 ---
+
 # Title Slide
 
 ---
 
 ## Content Slide
+
 Bullet 1  
 Bullet 2
 
 ---
 
 ## Layout Checks
+
 - Code
+
 ```r
 summary(cars)
 ```

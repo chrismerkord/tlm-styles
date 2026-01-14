@@ -1,40 +1,18 @@
 # TLM Styles (SCSS)
 
-Shared SCSS for consistent styling across Teaching & Learning Materials:
+Shared SCSS for consistent styling across Teaching & Learning Materials. This repo is designed to be used as a **git submodule** in course repositories and layered into Quarto’s theming pipeline.
 
--   Websites (Quarto HTML)
+Supported outputs:
+
+-   Quarto websites (HTML)
 -   Reveal.js presentations
--   HTML handouts
-
-## Repository Layout
-
-```         
-_core.scss                 # base elements, utilities
-_mixins.scss               # reusable mixins
-_print.scss                # print rules for HTML→PDF
-_variables.scss            # colors, typography, spacing tokens
-handouts.scss              # overrides for handout outputs
-presentations.scss         # overrides for presentation outputs
-websites.scss              # overrides for website outputs
-styles.scss                # single entrypoint that uses/forwards the above
-_brand.yml                 # Quarto brand tokens (fonts, colors)
-_quarto.yml                # Quarto project defaults (for testing)
-assets/
-  img/                     # logos and other images
-tests/                     # minimal .qmd files for verifying styles
-  handout-test.qmd
-  presentations-test.qmd
-  website-test.qmd
-LICENSE
-README.md
-.gitignore
-```
+-   HTML handouts / browser-based PDFs
 
 ## Adding the submodule (first time only)
 
 -   Do this once in each course repository where you want to use the shared styles. Open the **course repo** in RStudio, then in the **Terminal** tab run:
 
-    ```         
+    ```
     git submodule add https://github.com/chrismerkord/tlm-styles.git tlm-styles
     ```
 
@@ -44,7 +22,7 @@ README.md
 
 -   When you (or anyone else) clone a course repo that already contains the `tlm-styles` submodule, run this once in the **Terminal** tab before using the repo:
 
-    ```         
+    ```
     git submodule update --init --recursive
     ```
 
@@ -54,7 +32,7 @@ README.md
 
 -   Whenever you want to bring in new commits from `tlm-styles` (for example, after you update the style repo itself), run:
 
-    ```         
+    ```
     git submodule update --remote --merge tlm-styles
     ```
 
@@ -73,129 +51,100 @@ README.md
 From the **course repository** (e.g. `biol-275`) in RStudio, open the **Terminal** tab and run:
 
 ``` bash
-git -C tlm-styles restore . 
+git -C tlm-styles restore .
 git -C tlm-styles clean -fd
 ```
 
-## SCSS Usage Guide
-
-This repo follows a modular SCSS structure. Each file has a specific purpose:
-
--   **`_variables.scss`**\
-    Define design tokens only:
-
-    -   Colors (`--brand-blue`, `--accent-green`)
-    -   Font stacks (`$body-font`, `$heading-font`)
-    -   Spacing scale (`$space-sm`, `$space-lg`)
-    -   Breakpoints, z-index layers, etc.
-
-    No selectors or styles here—just reusable values.
-
--   **`_mixins.scss`**\
-    Define reusable patterns:
-
-    -   Media query helpers
-    -   Functions for color manipulation
-    -   Utility mixins (clearfix, text truncation, etc.)
-
-    Keep logic here, not raw styles.
-
--   **`_core.scss`**\
-    Base element resets and defaults:
-
-    -   Normalize for `html`, `body`, `p`, `h1–h6`, `a`, `ul/ol`, `table`
-    -   Global rules (font-size, line-height, default link color)
-    -   Utility classes that apply site-wide (`.hidden`, `.no-print`, etc.)
-
--   **Main document type files** (`websites.scss`, `handouts.scss`, `revealjs-presentations.scss`)\
-    Build on top of core, variables, and mixins:
-
-    -   Layout rules (max widths, margins)
-    -   Component styling (callouts, navbars, figures)
-    -   Context-specific overrides (print rules in handouts, slide scaling in presentations)
-
-    These files should always start with:
-
-    ``` scss
-    @use "./variables" as *;
-    @use "./mixins" as *;
-    @use "./core";
-    ```
-
--   **`styles.scss`**
-
-    -   The single entrypoint. This pulls together variables, mixins, core, and each main document type. Quarto points to this file.
-
--   **Rule of thumb:**
-
-    -   *Tokens* go in `_variables.scss`
-
-    -   *Logic* goes in `_mixins.scss`
-
-    -   *Defaults* go in `_core.scss`
-
-    -   *Actual design decisions per output type* go in the main files (`websites.scss`, `handouts.scss`, `revealjs-presentations.scss`)
-
-## Brand Integration
-
-Quarto supports a `_brand.yml` file placed in the root of each course repository. This file declares high-level design tokens such as font families and color palette. It is the correct place to define which Adobe Fonts to use (e.g., Source Serif 4 for body, Source Sans 3 for headings, Source Code Pro for code) and base colors (text, background, accents).
-
-The `tlm-styles` SCSS repo does not hard-code fonts or brand colors. Instead, it provides the layout, spacing, and component styling that apply consistently across all outputs. When Quarto renders, values from `_brand.yml` flow into the SCSS tokens (`$body-font`, `$heading-font`, `$code-font`, `$brand-*` colors) so each course can customize its branding while still benefiting from the shared styling system.
-
-In practice:
-
--   Add `_brand.yml` to each course repo alongside `_quarto.yml`.
--   Configure fonts and colors in `_brand.yml`.
--   Keep structure, spacing, and component rules in `tlm-styles`.
-
-This separation ensures that shared SCSS logic is reusable across courses, while branding can be customized per course.
-
 ## Quarto Integration
 
--   **Website** (`_quarto.yml`):
+### Theme order (course repos)
 
-    ``` yaml
-    format:
-      html:
-        theme: 
-          - default
-          - tlm-styles/tlm-theme.scss
-          - styles.scss
-        include-in-header:
-          - text: |
-              <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
-    ```
+Brand tokens are layered automatically when `brand:` is set in `_quarto.yml`, so **do not** list `brand` in the theme list. A typical course repo theme order is:
 
--   **Reveal.js** (`.qmd`):
+1. `default`
+2. `tlm-styles/tlm-theme.scss`
+3. `styles.scss` (course-specific overrides)
 
-    ``` yaml
-    format:
-      revealjs:
-        theme: 
-          - default
-          - tlm-styles/tlm-theme.scss
-          - styles.scss
-        include-in-header:
-          - text: |
-              <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
-    ```
+### Website (`_quarto.yml`)
 
-Export to PDF via the browser with **Background graphics** enabled. The shared `_print.scss` controls pagination and print layout.
+``` yaml
+brand: _brand.yml
+
+format:
+  html:
+    theme:
+      - default
+      - tlm-styles/tlm-theme.scss
+      - styles.scss
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
+```
+
+### Reveal.js (`.qmd`)
+
+``` yaml
+format:
+  revealjs:
+    theme:
+      - default
+      - tlm-styles/tlm-theme.scss
+      - styles.scss
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
+```
+
+Export to PDF via the browser with **Background graphics** enabled. The shared print rules in `tlm-theme.scss` control pagination and print layout for Reveal.js.
 
 > Note: SCSS affects HTML-based outputs. For native DOCX or LaTeX-PDF, use `reference.docx` and LaTeX templates respectively.
 
+## Brand Integration
+
+Quarto supports a `_brand.yml` file at the root of each **course repository**. That file declares branding tokens (logos, fonts, colors). In this repo, `_brand.yml` is the shared brand file that course repos should point to via their `brand:` setting (it includes logo definitions and commented starter palettes/typography).
+
+**Layering model (top to bottom):**
+
+1. **Quarto base theme** (e.g., `default`)
+2. **Brand tokens** from the course repo’s `_brand.yml` (automatically layered by Quarto)
+3. **Shared TLM theme** (`tlm-styles/tlm-theme.scss` from this repo)
+4. **Course-specific overrides** (`styles.scss` in the course repo)
+
+**Where things live**
+
+-   **Fonts**: declared in the course repo’s `_brand.yml` under `typography`. Load Adobe Fonts (or other web fonts) via `include-in-header` in the course repo.
+-   **Colors**: declared in the course repo’s `_brand.yml` under `color` (palette, foreground/background, primary/secondary, etc.).
+-   **Shared layout & component rules**: live in `tlm-styles/tlm-theme.scss`.
+-   **Course-specific tweaks**: live in the course repo’s `styles.scss`.
+
+## SCSS Usage Guide
+
+This repo currently exposes a **single theme file**: `tlm-theme.scss`. It uses Quarto’s SCSS regions so it can be safely layered with other themes.
+
+### `tlm-theme.scss` structure
+
+-   `/*-- scss:defaults --*/` defines tokens (colors, fonts, spacing).
+-   `/*-- scss:mixins --*/` defines reusable mixins for text and headings.
+-   `/*-- scss:rules --*/` contains the actual rules for body text, headings, links, navbar/footer, Reveal.js typography, and print tweaks.
+
+### Editing guidance
+
+-   Put **design tokens** (fonts, colors, spacing defaults) in `scss:defaults`.
+-   Put **reusable patterns** in `scss:mixins`.
+-   Put **styles** in `scss:rules`, and keep them output-agnostic unless they must be specific to a format (e.g., Reveal.js or print).
+
 ## HTML → PDF Guidance
 
--   Pagination and margins come from `_print.scss` (`@page` and `@media print`).
+-   Pagination and margins come from `@media print` in `tlm-theme.scss`.
 -   Use utility classes in your QMD body:
-    -   `<div class="page-break"></div>` to force a new page.
-    -   Add `class: handout` to the top-level document container if you want the handout width rules.
--   In Chrome/Edge Print dialog: enable **Background graphics**, set **Scale 100%**, choose **Margins: Default** (or Custom if `_print.scss` margins differ).
+    -   `<div class="page-break"></div>` to force a new page (if your course-level `styles.scss` defines it).
+    -   Add `class: handout` to the top-level document container if you want handout-specific width rules (if defined in your course-level `styles.scss`).
+-   In Chrome/Edge Print dialog: enable **Background graphics**, set **Scale 100%**, choose **Margins: Default** (or Custom if your course styles define margins).
 
 ## Conventions
 
--   Import order: `variables` → `mixins` → `core` → targets → `_print.scss`.
--   Only reference tokens defined in `_variables.scss` inside targets.
+-   Keep `tlm-theme.scss` self-contained and organized by Quarto SCSS regions.
+-   Rely on `_brand.yml` for branding tokens; don’t hard-code course-specific fonts/colors in shared styles.
 -   Do not commit licensed font files. Use system fonts or licensed hosting.
 
 ## Testing the Styles
@@ -204,20 +153,32 @@ A `tests/` folder contains minimal Quarto files for each output type (website, h
 
 ### Run the tests in RStudio
 
-1.  In the **Files** pane, open one of the test files (e.g., `tests/website-test.qmd`).
+1.  In the **Files** pane, open one of the test files (e.g., `tests/wesite-test.qmd`).
 2.  Click the **Render** button at the top of the editor.
 3.  If the output opens in the RStudio Viewer pane, click the **Show in new window** button to expand it in your default web browser.
 
 ### What to check
 
 -   **Website test** → look at headings, tables, callouts, etc. in the browser.
--   **Handout test** → open in the browser, then go to **Print → Save as PDF**. Make sure **Background graphics** is enabled so styles are preserved. Check margins, page breaks, and print layout from `_print.scss`.
--   **Presentations test** → check slide formatting in the browser. Use **Print → Save as PDF** to verify PDF export matches slide design.
+-   **Handout test** → open in the browser, then go to **Print → Save as PDF**. Make sure **Background graphics** is enabled so styles are preserved. Check margins, page breaks, and print layout.
+-   **Presentation test** → check slide formatting in the browser. Use **Print → Save as PDF** to verify PDF export matches slide design.
 
 ### Notes
 
 -   Only the `.qmd` sources are versioned. Rendered `.html` and `.pdf` files in `tests/` are ignored by `.gitignore`.
 -   Update these tests when you add new style tokens or major structural changes to ensure consistency across outputs.
+
+## Repository Layout (current)
+
+```
+_brand.yml           # example brand config (logos + starter palette/typography)
+_quarto.yml          # local demo config (for testing)
+logos/               # brand assets referenced by _brand.yml
+tests/               # minimal .qmd files for verifying styles
+tlm-theme.scss       # shared Quarto theme (this repo’s primary asset)
+LICENSE
+README.md
+```
 
 ## License
 

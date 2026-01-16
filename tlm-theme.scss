@@ -3,47 +3,58 @@
   -----------------------------------------------------------------------------
   Shared Quarto theme SCSS for Teaching & Learning Materials (TLM).
 
-  How this file is used (course repo _quarto.yml):
+  Intended usage (course repo _quarto.yml):
     brand: tlm-styles/_brand.yml
     format:
       html:
         theme: [default, tlm-styles/tlm-theme.scss, styles.scss]
 
-  Quarto/Sass constraints:
+  Quarto/Sass constraints (important):
   - Do not use @use / @import in this file. Quarto concatenates theme layers,
     and Sass requires @use declarations to appear before any rules.
   - Keep tokens, mixins, and rules separated using Quarto's SCSS regions so
     theme layers merge safely across brand + course overrides.
+
+  Notes:
+  - This file is shared across outputs. Prefer output-scoped selectors when a
+    rule should apply only to websites or only to Reveal.js.
+  - Course-specific overrides belong in the course repo's styles.scss.
 */
 
 /*-- scss:defaults --*/
-// -----------------------------------------------------------------------------
-// Design tokens used across website, handouts, and Reveal.js slides.
-// Keep these as shared defaults; course-specific overrides belong in the
-// course repo's styles.scss.
-// -----------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
+   Design tokens (shared defaults)
 
+   - Place shared variables here (colors, spacing, typography tokens).
+   - Keep these minimal and stable.
+   - Course-specific token overrides belong in the course repo's styles.scss.
+   ----------------------------------------------------------------------------- */
 
 
 /*-- scss:mixins --*/
-// -----------------------------------------------------------------------------
-// Mixins centralize common typographic patterns. Use these in rules below to
-// keep styles consistent across outputs.
-// -----------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
+   Mixins (optional)
 
+   - Mixins centralize common patterns (typography, callouts, layout utilities).
+   - Keep mixins output-agnostic; scope at call sites if needed.
+   ----------------------------------------------------------------------------- */
 
 
 /*-- scss:rules --*/
-// -----------------------------------------------------------------------------
-// Global base rules for Quarto HTML outputs + Reveal.js.
-// Keep rules output-agnostic unless a format-specific override is required.
-// -----------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
+   Rules
 
-/*-- scss:rules --*/
+   Organization:
+   1) Website / Quarto HTML components (Bootstrap/Quarto UI elements)
+   2) Reveal.js (all presentation-only rules, nested under .reveal when possible)
+   ----------------------------------------------------------------------------- */
 
-/*-- improve the look of the cards --*/
-/*-- make them look more like the actual Bootstrap cards --*/
 
+/* =============================================================================
+   1) Website / Quarto HTML components
+   ============================================================================= */
+
+/* Improve the look of the cards (match Bootstrap card spacing more closely) */
 
 .card-header > p,
 .card-title > p,
@@ -69,43 +80,105 @@
   margin-bottom: 0;
 }
 
-/* Big statement slide */
-.reveal .statement-slide {
-  display: flex;
-  align-items: center;     /* vertical centering */
-  justify-content: center; /* horizontal centering */
-  height: 100%;
-  text-align: center;
-}
 
-.reveal .statement-slide p {
-  font-size: 2.6em;        /* adjust as needed */
-  line-height: 1.25;
-  font-weight: 600;
-  color: var(--accent, #2b6cb0); /* fallback if no brand token */
-  margin: 0;
-}
+/* =============================================================================
+   2) Reveal.js (presentation-only)
+   - Keep everything grouped here.
+   - Prefer nesting under .reveal so scope is explicit and consistent.
+   ============================================================================= */
 
-.reveal .keyword {
-  font-family: "Acumin Pro SemiCondensed", "Acumin Pro", sans-serif;
-  font-weight: 700;
-  background-color: color-mix(
-    in srgb,
-    #2e7d32 18%,
-    transparent
-  );
-  padding: 0.08em 0.35em;
-  border-radius: 0.3em;
-  color: #2e7d32;
-}
+.reveal {
 
-.reveal strong {
-  font-weight: 700;
-  color: #CC5500;
-}
+  /* ---------------------------------------------------------------------------
+     2.1 Reveal variables (presentation-wide)
+     --------------------------------------------------------------------------- */
 
-.reveal .slides img.fit-vertical {
-  max-width: 100%;
-  max-height: 70vh;
-  height: auto;
+  /* Reveal.js presentations — global font sizing */
+  &,
+  &-viewport {
+    --r-main-font-size: 44px;
+  }
+
+
+  /* ---------------------------------------------------------------------------
+     2.2 Slide typography + layout (lecture-hall tuning)
+     --------------------------------------------------------------------------- */
+
+  .slides {
+
+    /* 1) Increase space between slide title and content */
+    h1, h2, h3 {
+      margin-bottom: 0.5em;
+    }
+  
+    /* Lists outside of columns */
+    ul,
+    ol {
+      padding-left: 1.25em;
+    }
+  
+    /* 2) Improve bullet readability inside columns */
+    .column ul,
+    .column ol {
+      padding-left: 1em;   /* moves bullets away from column edge */
+    }
+  
+    /* Optional: slightly more breathing room between list items */
+    .column li {
+      margin-bottom: 0.25em;
+    }
+  
+    /* 3) Widen space between columns */
+    .columns {
+      gap: 1.5rem;
+    }
+  
+  
+    /* ---------------------------------------------------------------------------
+       2.3 Helper classes / components
+       --------------------------------------------------------------------------- */
+  
+    /* Big statement slide */
+    .statement-slide {
+      display: flex;
+      align-items: center;     /* vertical centering */
+      justify-content: center; /* horizontal centering */
+      height: 100%;
+      text-align: center;
+    }
+  
+    .statement-slide p {
+      font-size: 2.6em;        /* adjust as needed */
+      line-height: 1.25;
+      font-weight: 600;
+      color: var(--accent, #2b6cb0); /* fallback if no brand token */
+      margin: 0;
+    }
+  
+    .keyword {
+      font-family: "Acumin Pro SemiCondensed", "Acumin Pro", sans-serif;
+      font-weight: 700;
+      background-color: color-mix(
+        in srgb,
+        #2e7d32 18%,
+        transparent
+      );
+      padding: 0.08em 0.35em;
+      border-radius: 0.3em;
+      color: #2e7d32;
+    }
+  
+    strong {
+      font-weight: 700;
+      color: #CC5500;
+    }
+  
+    img.fit-vertical {
+      max-width: 100%;
+      max-height: 70vh;
+      height: auto;
+    }
+  
+  }
+
 }

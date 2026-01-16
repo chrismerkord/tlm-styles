@@ -13,3 +13,5 @@
 /tests/*_files/
 /.quarto/
 /_site/
+
+**/*.quarto_ipynb

@@ -8,21 +8,122 @@ format:
       - ../tlm-theme.scss
     pdf: true
     slide-number: true
+    width: 1920
+    height: 1080
+    margin: 0.05
     include-in-header:
       - text: |
           <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
 ---
 
-# Title Slide
+<style>
+/* Minimal layout visualization (color fills only)
+   Reveal-only, no layout-affecting properties */
 
----
+/* Entire slide area */
+.reveal .slides section.layout-debug {
+  position: relative;
+  background-color: rgba(220, 50, 47, 0.06); /* slide area */
+}
+
+/* Title area */
+.reveal .slides section.layout-debug h2 {
+  background-color: rgba(38, 139, 210, 0.15);
+}
+
+/* Columns container */
+.reveal .slides section.layout-debug .columns {
+  background-color: rgba(133, 153, 0, 0.10);
+}
+
+/* Individual columns */
+.reveal .slides section.layout-debug .column {
+  background-color: rgba(181, 137, 0, 0.14);
+}
+
+/* Inner content block (visual “content area”) */
+.reveal .slides section.layout-debug .col-content {
+  background-color: rgba(108, 113, 196, 0.18);
+}
+
+/* Lists inside columns */
+.reveal .slides section.layout-debug ul {
+  background-color: rgba(211, 54, 130, 0.12);
+}
+</style>
 
 ## Content Slide
 
-Bullet 1  
-Bullet 2
+- Bullet 1  
+- Bullet 2
 
----
+## Dense Text Slide (Stress Test)
+
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
+- Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
+
+## Two-Column Text Layout
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Left Column**
+
+- Lorem ipsum dolor sit amet
+- Consectetur adipiscing elit
+- Sed do eiusmod tempor incididunt
+- Ut labore et dolore magna aliqua
+- Ut enim ad minim veniam
+- Quis nostrud exercitation
+:::
+
+::: {.column width="50%"}
+**Right Column**
+
+- Duis aute irure dolor
+- In reprehenderit in voluptate
+- Velit esse cillum dolore
+- Eu fugiat nulla pariatur
+- Excepteur sint occaecat
+- Cupidatat non proident
+:::
+
+::::
+
+
+## Text and Image
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Level 3 Heading
+
+- Lorem ipsum dolor sit amet
+- Consectetur adipiscing elit
+- Sed do eiusmod tempor
+- Incididunt ut labore
+- Et dolore magna aliqua
+:::
+
+::: {.column width="50%"}
+![](https://fastly.picsum.photos/id/17/2500/1667.jpg?hmac=HD-JrnNUZjFiP2UZQvWcKrgLoC_pc_ouUSWv8kHsJJY){fig-alt="Placeholder test image used to evaluate layout and caption sizing."}
+
+*Figure: Placeholder image used to test Reveal.js image scaling and caption typography.*
+:::
+
+::::
+
+## Slide with a long title: Lorem ipsum dolor sit amet consectetur adipiscing elit ded do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+- Lorem ipsum dolor sit amet
+- Consectetur adipiscing elit
+- Sed do eiusmod tempor
+- Incididunt ut labore
+- Et dolore magna aliqua
 
 ## Layout Checks
 
@@ -31,3 +132,39 @@ Bullet 2
 ```r
 summary(cars)
 ```
+
+
+## Slide Layout Diagnostic {.layout-debug}
+
+:::: {.columns}
+::: {.column width="50%"}
+<div class="col-content">
+
+**Left column content**
+
+- Bullet list block
+- List padding/indent
+- Line spacing
+- Wrapping behavior
+
+</div>
+:::
+
+::: {.column width="50%"}
+<div class="col-content">
+
+**Right column content**
+
+- More bullets
+- More bullets
+- More bullets
+- More bullets
+
+</div>
+:::
+::::
+
+- Bullet list block
+- List padding/indent
+- Line spacing
+- Wrapping behavior

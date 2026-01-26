@@ -1,21 +1,33 @@
 ---
 title: "Presentation Style Test"
 brand: ../_brand.yml
+tbl-cap-location: bottom
+lightbox: auto
 format:
   revealjs:
-    theme:
-      - default
-      - ../tlm-theme.scss
     pdf: true
+    fig-align: center
+    cap-location: bottom
     slide-number: true
+    toc: false
+    controls: true
+    progress: true
     width: 1920
     height: 1080
     margin: 0.05
+    hash: true
+    center: false
+    chalkboard: true
+    footer: "BIOL 275 Biostatistics | Spring 2026"
+    theme:
+      - default
+      - ../tlm-theme.scss
     include-in-header:
       - text: |
           <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
 ---
 
+```{=html}
 <style>
 /* Minimal layout visualization (color fills only)
    Reveal-only, no layout-affecting properties */
@@ -51,62 +63,60 @@ format:
   background-color: rgba(211, 54, 130, 0.12);
 }
 </style>
+```
 
 ## Content Slide
 
-- Bullet 1  
-- Bullet 2
+-   Bullet 1\
+-   Bullet 2
 
 ## Dense Text Slide (Stress Test)
 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-- Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
-- Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
+-   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+-   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+-   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+-   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+-   Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
+-   Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
 
 ## Two-Column Text Layout
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
 **Left Column**
 
-- Lorem ipsum dolor sit amet
-- Consectetur adipiscing elit
-- Sed do eiusmod tempor incididunt
-- Ut labore et dolore magna aliqua
-- Ut enim ad minim veniam
-- Quis nostrud exercitation
+-   Lorem ipsum dolor sit amet
+-   Consectetur adipiscing elit
+-   Sed do eiusmod tempor incididunt
+-   Ut labore et dolore magna aliqua
+-   Ut enim ad minim veniam
+-   Quis nostrud exercitation
 :::
 
 ::: {.column width="50%"}
 **Right Column**
 
-- Duis aute irure dolor
-- In reprehenderit in voluptate
-- Velit esse cillum dolore
-- Eu fugiat nulla pariatur
-- Excepteur sint occaecat
-- Cupidatat non proident
+-   Duis aute irure dolor
+-   In reprehenderit in voluptate
+-   Velit esse cillum dolore
+-   Eu fugiat nulla pariatur
+-   Excepteur sint occaecat
+-   Cupidatat non proident
 :::
-
-::::
-
+:::::
 
 ## Text and Image
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="50%"}
 ### Level 3 Heading
 
-- Lorem ipsum dolor sit amet
-- Consectetur adipiscing elit
-- Sed do eiusmod tempor
-- Incididunt ut labore
-- Et dolore magna aliqua
+-   Same goal as histograms: reveal shape, center, spread, skew
+-   No bins; based on a continuous density estimate
+-   Emphasize overall patterns rather than exact counts
+-   Well suited for comparing multiple groups on the same axis
+-   Shape depends strongly on bandwidth (smoothing level)
+-   Defaults can mislead — adjust bandwidth intentionally
 :::
 
 ::: {.column width="50%"}
@@ -114,57 +124,51 @@ format:
 
 *Figure: Placeholder image used to test Reveal.js image scaling and caption typography.*
 :::
-
-::::
+:::::
 
 ## Slide with a long title: Lorem ipsum dolor sit amet consectetur adipiscing elit ded do eiusmod tempor incididunt ut labore et dolore magna aliqua
 
-- Lorem ipsum dolor sit amet
-- Consectetur adipiscing elit
-- Sed do eiusmod tempor
-- Incididunt ut labore
-- Et dolore magna aliqua
+-   Lorem ipsum dolor sit amet
+-   Consectetur adipiscing elit
+-   Sed do eiusmod tempor
+-   Incididunt ut labore
+-   Et dolore magna aliqua
 
 ## Layout Checks
 
-- Code
+-   Code
 
-```r
+``` r
 summary(cars)
 ```
 
-
 ## Slide Layout Diagnostic {.layout-debug}
 
-:::: {.columns}
-::: {.column width="50%"}
-<div class="col-content">
-
+::::::: columns
+:::: {.column width="50%"}
+::: col-content
 **Left column content**
 
-- Bullet list block
-- List padding/indent
-- Line spacing
-- Wrapping behavior
-
-</div>
-:::
-
-::: {.column width="50%"}
-<div class="col-content">
-
-**Right column content**
-
-- More bullets
-- More bullets
-- More bullets
-- More bullets
-
-</div>
+-   Bullet list block
+-   List padding/indent
+-   Line spacing
+-   Wrapping behavior
 :::
 ::::
 
-- Bullet list block
-- List padding/indent
-- Line spacing
-- Wrapping behavior
+:::: {.column width="50%"}
+::: col-content
+**Right column content**
+
+-   More bullets
+-   More bullets
+-   More bullets
+-   More bullets
+:::
+::::
+:::::::
+
+-   Bullet list block
+-   List padding/indent
+-   Line spacing
+-   Wrapping behavior

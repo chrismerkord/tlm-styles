@@ -76,8 +76,11 @@ logo:
 typography:
   fonts:
     - family: Source Sans 3
+      source: google
     - family: Source Serif 4
+      source: google
     - family: Source Code Pro
+      source: google
 #   base:
 #     family: Source Sans 3
 #   headings:

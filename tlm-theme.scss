@@ -54,6 +54,28 @@
    1) Website / Quarto HTML components
    ============================================================================= */
 
+/* Style the Course Info block on the home page */
+
+.course-info {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1rem;
+  row-gap: 0.15rem;
+  margin: 0;
+}
+
+.course-info dt {
+  grid-column: 1;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.course-info dd {
+  grid-column: 2;
+  margin: 0;
+}
+
 /* Improve the look of the cards (match Bootstrap card spacing more closely) */
 
 .card-header > p,
@@ -96,7 +118,7 @@
   /* Reveal.js presentations — global font sizing */
   &,
   &-viewport {
-    --r-main-font-size: 32px;
+    --r-main-font-size: 42px;
   }
 
 
@@ -120,19 +142,35 @@
     /* 2) Improve bullet readability inside columns */
     .column ul,
     .column ol {
-      padding-left: 1em;   /* moves bullets away from column edge */
+      padding-left: .5em;   /* moves bullets away from column edge */
     }
   
     /* Optional: slightly more breathing room between list items */
     .column li {
       margin-bottom: 0.25em;
     }
-  
-    /* 3) Widen space between columns */
+    
+    /* Reveal.js: consistent column gap for any number of columns */
     .columns {
-      gap: 1.5rem;
+      --tlm-col-gap: 3rem; /* set your desired gap here */
+    
+      /* cancel the outer half-gap so the columns block doesn't grow */
+      // margin-left: calc(var(--tlm-col-gap) / -2);
+      // margin-right: calc(var(--tlm-col-gap) / -2); 
     }
-  
+    
+    .columns > .column {
+      box-sizing: border-box; /* critical: padding doesn't increase column width */
+      padding-left: calc(var(--tlm-col-gap) / 2);
+      padding-right: calc(var(--tlm-col-gap) / 2);
+    }
+    
+    /* Optional: remove content-based faux-gaps */
+    .columns > .column > :not(ul, ol) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+      
   
     /* ---------------------------------------------------------------------------
        2.3 Helper classes / components

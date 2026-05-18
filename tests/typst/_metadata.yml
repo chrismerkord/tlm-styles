@@ -1,0 +1,7 @@
+format:
+  typst:
+    template-partials:
+      - ../../typst/partials/page.typ
+    include-in-header:
+      - file: ../../typst/page-layout.typ
+      - file: ../../typst/page-layout-header.typ

@@ -70,6 +70,14 @@ format:
 -   Bullet 1\
 -   Bullet 2
 
+## Testing the [.keyword]{keyword} Style
+
+Use `.keyword` to highlight [keywords]{.keyword} in body text and slide titles.
+
+```markdown
+[keyword]{.keyword}
+```
+
 ## Dense Text Slide (Stress Test)
 
 -   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

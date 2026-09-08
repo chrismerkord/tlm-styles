@@ -1,5 +1,10 @@
 ---
 title: "Website Style Test"
+listing:
+  contents:
+    - "presentation-test.qmd"
+  type: default
+  image-placeholder: images/listing-placeholder.png
 ---
 
 # H1
@@ -15,3 +20,6 @@ Callout
 | A | B |
 |---|---|
 | 1 | 2 |
+
+## Listing
+

@@ -102,6 +102,38 @@
   margin-bottom: 0;
 }
 
+/* Display listing subtitles as item-label eyebrows above item titles */
+
+.quarto-listing-default .quarto-post .body {
+  display: flex;
+  flex-direction: column;
+}
+
+.quarto-listing-default .quarto-post .listing-subtitle {
+  order: 1;
+  margin: 0 0 0.25rem;
+  color: var(--bs-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.quarto-listing-default .quarto-post .listing-subtitle a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.quarto-listing-default .quarto-post .listing-title {
+  order: 2;
+  margin-top: 0;
+}
+
+.quarto-listing-default .quarto-post .listing-description {
+  order: 3;
+}
+
 
 /* =============================================================================
    2) Reveal.js (presentation-only)

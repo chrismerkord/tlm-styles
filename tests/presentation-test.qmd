@@ -1,5 +1,10 @@
 ---
 title: "Presentation Style Test"
+subtitle: "Lecture 1"
+description: "A revealjs presentation to illustrate the styles defined in tlm-styles"
+date: today
+author: Author Name
+image: images/listing-placeholder.png
 brand: ../_brand.yml
 tbl-cap-location: bottom
 lightbox: auto
@@ -67,25 +72,25 @@ format:
 
 ## Content Slide
 
--   Bullet 1\
--   Bullet 2
+- Bullet 1\
+- Bullet 2
 
-## Testing the [.keyword]{keyword} Style
+## Testing the \[.keyword\]{keyword} Style
 
 Use `.keyword` to highlight [keywords]{.keyword} in body text and slide titles.
 
-```markdown
+``` markdown
 [keyword]{.keyword}
 ```
 
 ## Dense Text Slide (Stress Test)
 
--   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
--   Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
--   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
--   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
--   Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
--   Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+- Curabitur pretium tincidunt lacus. Nulla gravida orci a odio.
+- Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris.
 
 ## Two-Column Text Layout
 
@@ -93,23 +98,23 @@ Use `.keyword` to highlight [keywords]{.keyword} in body text and slide titles.
 ::: {.column width="50%"}
 **Left Column**
 
--   Lorem ipsum dolor sit amet
--   Consectetur adipiscing elit
--   Sed do eiusmod tempor incididunt
--   Ut labore et dolore magna aliqua
--   Ut enim ad minim veniam
--   Quis nostrud exercitation
+- Lorem ipsum dolor sit amet
+- Consectetur adipiscing elit
+- Sed do eiusmod tempor incididunt
+- Ut labore et dolore magna aliqua
+- Ut enim ad minim veniam
+- Quis nostrud exercitation
 :::
 
 ::: {.column width="50%"}
 **Right Column**
 
--   Duis aute irure dolor
--   In reprehenderit in voluptate
--   Velit esse cillum dolore
--   Eu fugiat nulla pariatur
--   Excepteur sint occaecat
--   Cupidatat non proident
+- Duis aute irure dolor
+- In reprehenderit in voluptate
+- Velit esse cillum dolore
+- Eu fugiat nulla pariatur
+- Excepteur sint occaecat
+- Cupidatat non proident
 :::
 :::::
 
@@ -119,12 +124,12 @@ Use `.keyword` to highlight [keywords]{.keyword} in body text and slide titles.
 ::: {.column width="50%"}
 ### Level 3 Heading
 
--   Same goal as histograms: reveal shape, center, spread, skew
--   No bins; based on a continuous density estimate
--   Emphasize overall patterns rather than exact counts
--   Well suited for comparing multiple groups on the same axis
--   Shape depends strongly on bandwidth (smoothing level)
--   Defaults can mislead — adjust bandwidth intentionally
+- Same goal as histograms: reveal shape, center, spread, skew
+- No bins; based on a continuous density estimate
+- Emphasize overall patterns rather than exact counts
+- Well suited for comparing multiple groups on the same axis
+- Shape depends strongly on bandwidth (smoothing level)
+- Defaults can mislead — adjust bandwidth intentionally
 :::
 
 ::: {.column width="50%"}
@@ -136,15 +141,15 @@ Use `.keyword` to highlight [keywords]{.keyword} in body text and slide titles.
 
 ## Slide with a long title: Lorem ipsum dolor sit amet consectetur adipiscing elit ded do eiusmod tempor incididunt ut labore et dolore magna aliqua
 
--   Lorem ipsum dolor sit amet
--   Consectetur adipiscing elit
--   Sed do eiusmod tempor
--   Incididunt ut labore
--   Et dolore magna aliqua
+- Lorem ipsum dolor sit amet
+- Consectetur adipiscing elit
+- Sed do eiusmod tempor
+- Incididunt ut labore
+- Et dolore magna aliqua
 
 ## Layout Checks
 
--   Code
+- Code
 
 ``` r
 summary(cars)
@@ -157,10 +162,10 @@ summary(cars)
 ::: col-content
 **Left column content**
 
--   Bullet list block
--   List padding/indent
--   Line spacing
--   Wrapping behavior
+- Bullet list block
+- List padding/indent
+- Line spacing
+- Wrapping behavior
 :::
 ::::
 
@@ -168,15 +173,15 @@ summary(cars)
 ::: col-content
 **Right column content**
 
--   More bullets
--   More bullets
--   More bullets
--   More bullets
+- More bullets
+- More bullets
+- More bullets
+- More bullets
 :::
 ::::
 :::::::
 
--   Bullet list block
--   List padding/indent
--   Line spacing
--   Wrapping behavior
+- Bullet list block
+- List padding/indent
+- Line spacing
+- Wrapping behavior

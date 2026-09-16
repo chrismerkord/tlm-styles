@@ -4,7 +4,7 @@
 // intentional modification described below.
 //
 // Intentional difference:
-// - Omits Quarto's $if(logo)$ page-background block.
+// - Omits Quarto's conditional page-background logo block.
 // - This prevents the brand's small logo from being automatically placed
 //   in the upper-left corner of every Typst page.
 // - TLM page layouts manage document logos explicitly instead.

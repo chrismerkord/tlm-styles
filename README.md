@@ -1,12 +1,13 @@
-# TLM Styles (SCSS)
+# TLM Styles
 
-Shared SCSS for consistent styling across Teaching & Learning Materials. This repo is designed to be used as a **git submodule** in course repositories and layered into Quarto’s theming pipeline.
+Shared branding and styles for consistent Teaching & Learning Materials. This repo is designed to be used as a **git submodule** in course repositories and integrated with Quarto through `_brand.yml`, shared SCSS/CSS, and Typst layout files.
 
 Supported outputs:
 
 -   Quarto websites (HTML)
--   Reveal.js presentations
+-   Reveal.js presentations (HTML and browser-based PDF)
 -   HTML handouts / browser-based PDFs
+-   Typst documents / PDFs
 
 ## Adding the submodule (first time only)
 
@@ -68,7 +69,7 @@ Brand tokens are layered automatically when `brand:` is set in `_quarto.yml`, so
 ### Website (`_quarto.yml`)
 
 ``` yaml
-brand: _brand.yml
+brand: tlm-styles/_brand.yml
 
 format:
   html:
@@ -95,13 +96,33 @@ format:
           <link rel="stylesheet" href="https://use.typekit.net/tag1lvz.css">
 ```
 
-Export to PDF via the browser with **Background graphics** enabled. The shared print rules in `tlm-theme.scss` control pagination and print layout for Reveal.js.
+Export to PDF via the browser with **Background graphics** enabled. The shared print rules control pagination and print layout for Reveal.js.
 
-> Note: SCSS affects HTML-based outputs. For native DOCX or LaTeX-PDF, use `reference.docx` and LaTeX templates respectively.
+### Typst (`_quarto.yml`)
+
+Typst documents use the shared brand plus a custom page partial and page-layout files:
+
+``` yaml
+brand: tlm-styles/_brand.yml
+
+format:
+  typst:
+    template-partials:
+      - tlm-styles/typst/partials/page.typ
+    include-in-header:
+      - file: tlm-styles/typst/page-layout.typ
+      - file: tlm-styles/typst/page-layout-header.typ
+```
+
+The custom `page.typ` partial tracks Quarto’s built-in Typst page partial but intentionally suppresses Quarto’s automatic brand-logo page background. `page-layout.typ` defines the shared header/footer layout, and `page-layout-header.typ` maps document metadata such as `short-title`, `course-label`, `document-context`, and `footer-logo` into that layout.
+
+When upgrading Quarto, compare `typst/partials/page.typ` with the corresponding built-in Quarto partial and incorporate upstream changes while preserving the intentional logo suppression.
+
+> Note: SCSS/CSS applies to HTML-based outputs. Typst PDFs use the shared brand and files under `typst/` instead.
 
 ## Brand Integration
 
-Quarto supports a `_brand.yml` file at the root of each **course repository**. That file declares branding tokens (logos, fonts, colors). In this repo, `_brand.yml` is the shared brand file that course repos should point to via their `brand:` setting (it includes logo definitions and commented starter palettes/typography).
+The shared `_brand.yml` in this repository declares branding tokens such as logos, fonts, and colors. Course repositories should point directly to the submodule copy with `brand: tlm-styles/_brand.yml`.
 
 **Layering model (top to bottom):**
 
@@ -112,8 +133,7 @@ Quarto supports a `_brand.yml` file at the root of each **course repository**. T
 
 **Where things live**
 
--   **Fonts**: declared in the course repo’s `_brand.yml` under `typography`. Load Adobe Fonts (or other web fonts) via `include-in-header` in the course repo.
--   **Colors**: declared in the course repo’s `_brand.yml` under `color` (palette, foreground/background, primary/secondary, etc.).
+-   **Fonts and colors**: declared in `tlm-styles/_brand.yml`. Web fonts that require external loading can be added through `include-in-header` in the course repo.
 -   **Shared layout & component rules**: live in `tlm-styles/tlm-theme.scss`.
 -   **Course-specific tweaks**: live in the course repo’s `styles.scss`.
 
@@ -149,7 +169,7 @@ This repo currently exposes a **single theme file**: `tlm-theme.scss`. It uses Q
 
 ## Testing the Styles
 
-A `tests/` folder contains minimal Quarto files for each output type (website, handout, presentation). These are for verifying that the SCSS compiles correctly and styles render as expected.
+A `tests/` folder contains minimal Quarto files for the supported output types, including Typst documents. These are for verifying that shared branding, styles, and layouts render as expected.
 
 ### Run the tests in RStudio
 
@@ -162,6 +182,7 @@ A `tests/` folder contains minimal Quarto files for each output type (website, h
 -   **Website test** → look at headings, tables, callouts, etc. in the browser.
 -   **Handout test** → open in the browser, then go to **Print → Save as PDF**. Make sure **Background graphics** is enabled so styles are preserved. Check margins, page breaks, and print layout.
 -   **Presentation test** → check slide formatting in the browser. Use **Print → Save as PDF** to verify PDF export matches slide design.
+-   **Typst test** → render to PDF and verify page layout, metadata-driven headers/footers, and logo placement.
 
 ### Notes
 
@@ -171,11 +192,12 @@ A `tests/` folder contains minimal Quarto files for each output type (website, h
 ## Repository Layout (current)
 
 ```
-_brand.yml           # example brand config (logos + starter palette/typography)
-_quarto.yml          # local demo config (for testing)
+_brand.yml           # shared Quarto brand configuration
+_quarto.yml          # local configuration for tests
 logos/               # brand assets referenced by _brand.yml
-tests/               # minimal .qmd files for verifying styles
-tlm-theme.scss       # shared Quarto theme (this repo’s primary asset)
+typst/               # shared Typst page layout and template partials
+tests/               # minimal Quarto files for verifying supported outputs
+*.scss               # shared styles for websites, handouts, and presentations
 LICENSE
 README.md
 ```

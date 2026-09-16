@@ -29,26 +29,36 @@
 //
 // Applies a consistent header/footer layout to a document body.
 //
-// Typical usage in a Quarto .qmd YAML:
+// In Quarto, this function is normally activated indirectly through
+// page-layout-header.typ. A course repository should include both files in its
+// Typst configuration:
 //
 // format:
 //   typst:
+//     template-partials:
+//       - tlm-styles/typst/partials/page.typ
 //     include-in-header:
-//       - file: ../tlm-styles/typst/page-layout.typ
-//       - text: |
-//           #show: body => page-layout(
-//             body,
-//             short-title: "Midterm Exam",
-//             course-label: "STAT 201 Inference",
-//             document-context: "Bayes | Fa 2026",
-//             logo: "../department-logo.png",
-//           )
+//       - file: tlm-styles/typst/page-layout.typ
+//       - file: tlm-styles/typst/page-layout-header.typ
+//
+// The QMD document then supplies the content used by the layout through
+// metadata:
+//
+// short-title: "Midterm Exam"
+// course-label: "STAT 201 Inference"
+// document-context: "Bayes | Fa 2026"
+// footer-logo: "path/to/logo.png"
+//
+// page-layout-header.typ maps these metadata values to the arguments of
+// page-layout().
 //
 // Notes:
 //
 // - The short title is hidden on page 1 to reduce redundancy.
-// - The logo is optional.
-// - Paths to logos/images are relative to the rendered .qmd file.
+// - The footer logo is optional.
+// - Image paths are resolved in the context of the rendered Quarto project.
+// - Quarto's default brand-logo page background is disabled separately by
+//   typst/partials/page.typ.
 // -----------------------------------------------------------------------------
 
 #let page-layout(
@@ -85,12 +95,6 @@
   // ---------------------------------------------------------------------------
 
   set page(
-
-    // Clear Quarto's automatic Typst brand-logo background.
-    // Brand fonts and colors can still be used, but logo placement is handled
-    // explicitly in this layout file.
-    background: none,
-    
 
     // Distance from the top edge of the page to the header.
     // Adjust if the header appears too close to the body content.

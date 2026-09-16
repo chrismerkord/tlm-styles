@@ -1,3 +1,18 @@
+// Customization of Quarto's built-in Typst page.typ partial.
+//
+// Copy of Quarto 1.10's built-in Typst page.typ partial, with the 
+// intentional modification described below.
+//
+// Intentional difference:
+// - Omits Quarto's $if(logo)$ page-background block.
+// - This prevents the brand's small logo from being automatically placed
+//   in the upper-left corner of every Typst page.
+// - TLM page layouts manage document logos explicitly instead.
+//
+// When upgrading Quarto, compare this file against Quarto's current
+// share/formats/typst/pandoc/quarto/page.typ and incorporate upstream
+// changes while preserving the omission above.
+
 #set page(
   paper: $if(papersize)$"$papersize$"$else$"us-letter"$endif$,
 $if(margin-geometry)$
